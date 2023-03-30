@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Evaluation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    <style>
+        div{
+            border: 0px solid brown;
+        }
+        #qee{
+            align-self: center;
+            background-color: rgb(250, 249, 251);
+            color: aliceblue;
+        }
+        #row{
+            display: flex;
+            
+            background-color: rgb(3, 3, 93);
+        }
+        .re{
+            color: black;
+        }
+        .p{
+            color:rgb(5, 0, 0);
+            font-size: medium;
+            text-align: justify;
+        }
+        .pp{
+                    color:rgb(253, 252, 252);
+                    font-size: medium;
+                    text-align: justify;
+                }
+        
+        #result_column{
+            position:inherit;
+            right: 0PX;
+            top: 40px;
+            min-height: fit-content;
+            
+        }
+        table tbody tr td{
+            color: white;
+        }
+        #result_column table tbody tr .cat{
+            color: white;
+        }
+        .ppp{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="row">
+            <div class="col-md-8 mt-5" id="qee">
+              <img src="{{url_for('static',filename='/images/stress_zone_graph.jpg')}}" alt="" width="90%">
+              <h4 class="mt-5 re">ZONE 1</h4>
+              <p class="p mx-3">  
+                Your level of physical fitness and stress is dangerously low. You need to add some spark to your life in order to live up to your capabilities. 
+                 </p>
+                 <h4 class="mt-5 re">ZONE 2</h4>
+                 <p class="p mx-3">  
+                    You enjoy a low level of physical fitness and stress. This may be the result of a peaceful environment and a calm personality. Your situation is healthy and you are not in danger of heart attacks, ulcers and other diseases associated with your physical fitness and stress. However, it is possible that you are not accomplishing what you could and that, from time to time, you need to set goals for yourself and push yourself a little harder. 
+                    </p>
+                    <h4 class="mt-5 re">ZONE 3</h4>
+                 <p class="p mx-3">
+                    Normal zone. Most people find themselves in this level. Sometimes there is stress and sometimes relaxation. A certain amount of stress is necessary in order to reach our goals but this stress must not be permanent and must be accompanied by periods of rest and relaxation. These alternating circumstances help to form part of a balanced life and physical fitness. This is a large zone and your points may be close to one of its extremes. If your points are close to the upper extreme, you may want to consider yourself at least partially in zone 4. 
+                    </p>
+                    <h4 class="mt-5 re">ZONE 4</h4>
+                 <p class="p mx-3"> 
+                    This level of physical fitness and stress is considered high. You are receiving a clear warning of danger. Examine each area of your life carefully so you can decide which problems need urgent solutions. You are still able to avoid major psychological problems such as depression, anxiety or the loss of mental abilities. This is the time to change your lifestyle so you can avoid complications in the digestive and circulatory systems. Try to attack the problem from various areas of life: diet, physical exercise, relaxation, emotional support by someone trusted. Adopt a positive attitude and be friendly with others. 
+                    </p>
+                    <h4 class="mt-5 re">ZONE 5</h4>
+                 <p class="p mx-3">
+                    This zone is dangerous. If you score above 144 points, you are among a small group of people who are experiencing abnormally high levels of physical fitness, stress and multiple problems which need immediate attention. You must seriously decide to get out of this situation before it is too late. Find help. There are situations which one cannot face alone. At times we all need the support of family or friend or even the professional help of a psychologist or psychiatrist. If it is possible change your activities for a few days and try to apply as many of the anti-stress techniques and strategies as possible. 
+                    </p>
+            </div>
+            <div class="col-md-4" id="result_column" >
+            
+                <h2 class="mt-5" style="color: white;">Result</h2>
+
+                <p class="mx-3" style="color: white;">
+                    Now compare your total points with the graph on the left side of the page. Knowing this information about you would assist your fitness instructor to analyze and prescribe adequate programme. 
+                </p>
+                <h6 class="mt-5" style="color: white;"> With respect to the Test just carried out, your total score point is {{deets[0]}} </h6>
+                <table class="table table-striped" style="color: white; text-decoration-color: white;">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Test</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in alldeets %} 
+                        {% if loop.index <=6 %}
+                        
+                        <tr >
+                            <td class="cat">{{loop.index}}</td>
+                            <td class="cat"> {{i.cat_name.upper()}}  </td>
+                            <td class="cat"> {{i.cat_point}} </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        <tr >
+                            <td class="cat"></td>
+                            <td class="cat"> Total  </td>
+                            <td class="cat"> <h5>{{deets[0]}}</h5> </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                
+                <h4 class="mt-5 ppp">Summary</h4>
+
+                {% if deets[0] <=48 %}
+                <p class="pp mx-3">  
+                    <b> Your level of physical fitness and stress is dangerously low.</b>  You need to add some spark to your life in order to live up to your capabilities. 
+                     </p>
+                {% endif %}
+
+                {% if deets[0] > 49 and deets[0]<=72 %}
+                <p class="pp mx-3">  
+                    <b>You enjoy a low level of physical fitness and stress. </b>  This may be the result of a peaceful environment and a calm personality. Your situation is healthy and you are not in danger of heart attacks, ulcers and other diseases associated with your physical fitness and stress. However, it is possible that you are not accomplishing what you could and that, from time to time, you need to set goals for yourself and push yourself a little harder.  
+                     </p>
+                {% endif %}
+
+                {% if deets[0] > 72 and deets[0]<=96 %}
+                <p class="pp mx-3">  
+                    <b>Normal zone.</b> Most people find themselves in this level. Sometimes there is stress and sometimes relaxation. A certain amount of stress is necessary in order to reach our goals but this stress must not be permanent and must be accompanied by periods of rest and relaxation. These alternating circumstances help to form part of a balanced life and <b>physical fitness.</b>  This is a large zone and your points may be close to one of its extremes. If your points are close to the upper extreme, you may want to consider yourself at least partially in zone 4.  
+                     </p>
+                {% endif %}
+
+                {% if deets[0] > 96 and deets[0]<= 120 %}
+                <p class="pp mx-3">  
+                    <b>This level of physical fitness and stress is considered high.</b> You are receiving a clear warning of danger. Examine each area of your life carefully so you can decide which problems need urgent solutions. You are still able to avoid major psychological problems such as depression, anxiety or the loss of mental abilities. This is the time to change your lifestyle so you can avoid complications in the digestive and circulatory systems. Try to attack the problem from various areas of life: diet, physical exercise, relaxation, emotional support by someone trusted. Adopt a positive attitude and be friendly with others.  
+                     </p>
+                {% endif %}
+
+                {% if deets[0] > 120 %}
+                <p class="pp mx-3">  
+                    <b>This zone is dangerous.</b>  If you score above 144 points, you are among a small group of people who are experiencing abnormally high levels of <b>physical fitness</b>, stress and multiple problems which need immediate attention. You must seriously decide to get out of this situation before it is too late. Find help. There are situations which one cannot face alone. At times we all need the support of family or friend or even the professional help of a psychologist or psychiatrist. If it is possible change your activities for a few days and try to apply as many of the anti-stress techniques and strategies as possible.  
+                     </p>
+                {% endif %}    
+                
+                <a href="" class="btn btn-lg btn-light justify-self-center">Click Print Result</a>
+                     
+            
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Evaluation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    <style>
+        #q1{
+            background-color: rgb(250, 249, 251);
+            color: aliceblue;
+        }
+        #row{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="row" style="background-color: blue;">
+            <div class="col-md-11 mt-5"id="q1" style="display: flex; justify-content: center;">
+                <p> This is just for the home page </p>
+                <a href="{{url_for('employment')}}"> Click to enter the physical fitness test phase</a>
+
+                <p><a href="{{url_for('sed_lifestyle')}}"> Click to enter the sedentary lifestyle test phase</a></p>
+                <p><a href="{{url_for('social')}}"> Click to enter the social readjustment scale test phase</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

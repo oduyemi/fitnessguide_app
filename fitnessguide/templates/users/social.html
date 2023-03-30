@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Evaluation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    <style>
+        #q1{
+            background-color: rgb(250, 249, 251);
+            color: aliceblue;
+        }
+        #row{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="row" style="background-color: blue;">
+            <div class="col-md-11 mt-5"id="q1" style="display: flex; justify-content: center;">
+              <form action="{{url_for('social')}}" method="post"> 
+                
+                <table class="my-3 table table-striped">
+                    <h3> Social Readjustment Scale Test</h3>
+                    <h6>Read through the list and select the events which you have experienced in the   last 12 months by checking the applciable event. </h6>
+                    <thead>
+                        <tr>
+                            <th> S/N</th> 
+                            <th> Event </th>
+                            <th> Response </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 1 </td>
+                            <td> Death of spouse </td>   
+                            <td>  <input type="checkbox" name="dos1" value="100"></td>                                    
+                        </tr>  
+                        <tr>
+                            <td> 2 </td>
+                            <td>Divorce </td>   
+                            <td> <input type="checkbox" name="dos2" value="73"></td>                                    
+                        </tr>  
+                        <tr>
+                            <td> 3 </td>
+                            <td> Marital separation</td>   
+                            <td> <input type="checkbox" name="dos3" value="65"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 4 </td>
+                            <td> Jail term </td>   
+                            <td> <input type="checkbox" name="dos4" value="63"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 5 </td>
+                            <td>Death of close family member</td>   
+                            <td> <input type="checkbox" name="dos5" value="63"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 6 </td>
+                            <td> Personal injury or illness</td>   
+                            <td> <input type="checkbox" name="dos6" value="53"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 7 </td>
+                            <td> Marriage problem</td>   
+                            <td> <input type="checkbox" name="dos7" value="50"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 8 </td>
+                            <td> Fired at work</td>   
+                            <td> <input type="checkbox" name="dos8" value="47"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 9 </td>
+                            <td> Marital reconciliation</td>   
+                            <td> <input type="checkbox" name="dos9" value="45"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 10 </td>
+                            <td> Retirement</td>   
+                            <td> <input type="checkbox" name="dos10" value="45"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 11 </td>
+                            <td> Change in health of family member</td>   
+                            <td> <input type="checkbox" name="dos11" value="44"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 12 </td>
+                            <td> Pregnancy</td>   
+                            <td> <input type="checkbox" name="dos12" value="40"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 13 </td>
+                            <td> Sex difficulties</td>   
+                            <td> <input type="checkbox" name="dos13" value="39"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 14 </td>
+                            <td> Gain of new family member</td>   
+                            <td> <input type="checkbox" name="dos14" value="39"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 15 </td>
+                            <td> Business readjustment</td>   
+                            <td> <input type="checkbox" name="dos15" value="39"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 16 </td>
+                            <td> Change in financial state</td>   
+                            <td> <input type="checkbox" name="dos16" value="39"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 17 </td>
+                            <td> Death of close friend</td>   
+                            <td> <input type="checkbox" name="dos17" value="38"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 18 </td>
+                            <td> Change to different line of work </td>   
+                            <td> <input type="checkbox" name="dos18" value="36"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 19 </td>
+                            <td> Several arguments with spouse</td>   
+                            <td> <input type="checkbox" name="dos19" value="35"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 20 </td>
+                            <td> Mortgage of over  N1,000,000</td>   
+                            <td> <input type="checkbox" name="dos20" value="31"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 21 </td>
+                            <td> Foreclosure of mortgage or loan</td>   
+                            <td> <input type="checkbox" name="dos21" value="30"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 22 </td>
+                            <td> Change in responsibilities at work</td>   
+                            <td> <input type="checkbox" name="dos22" value="29"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 23 </td>
+                            <td> Son or daughter leaving home</td>   
+                            <td> <input type="checkbox" name="dos23" value="29"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 24</td>
+                            <td> Trouble with in-laws</td>   
+                            <td> <input type="checkbox" name="dos24" value="29"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 25 </td>
+                            <td> Outstanding personal achievement</td>   
+                            <td> <input type="checkbox" name="dos25" value="28"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 26 </td>
+                            <td> Wife begin or stop work </td>   
+                            <td> <input type="checkbox" name="dos26" value="26"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 27 </td>
+                            <td> Begin or end school</td>   
+                            <td> <input type="checkbox" name="dos27" value="26"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 28 </td>
+                            <td> Change in living conditions</td>   
+                            <td> <input type="checkbox" name="dos28" value="25"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 29 </td>
+                            <td> Revision of personal habits</td>   
+                            <td> <input type="checkbox" name="dos29" value="24"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 30 </td>
+                            <td> Trouble with boss</td>   
+                            <td> <input type="checkbox" name="dos30" value="23"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 31 </td>
+                            <td> Change in work hours or conditions</td>   
+                            <td> <input type="checkbox" name="dos31" value="20"></td>                                    
+                        </tr>
+                         <tr>
+                            <td> 32 </td>
+                            <td> Change in residence</td>   
+                            <td> <input type="checkbox" name="dos32" value="20"></td>                                    
+                        </tr>
+                         <tr>
+                            <td> 33 </td>
+                            <td> Change in school</td>   
+                            <td> <input type="checkbox" name="dos33" value="20"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 34 </td>
+                            <td> Change in recreation</td>   
+                            <td> <input type="checkbox" name="dos34" value="19"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 35 </td>
+                            <td> Change in religious activities</td>   
+                            <td> <input type="checkbox" name="dos35" value="19"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 36 </td>
+                            <td> Change in social activities</td>   
+                            <td> <input type="checkbox" name="dos36" value="18"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 37 </td>
+                            <td> Mortgage or loan less than N 100,000</td>   
+                            <td> <input type="checkbox" name="dos37" value="17"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 38 </td>
+                            <td> Change in sleeping habits</td>   
+                            <td> <input type="checkbox" name="dos38" value="16"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 39 </td>
+                            <td> Change in number of family get-togethers</td>   
+                            <td> <input type="checkbox" name="dos39" value="15"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 40 </td>
+                            <td> Change in eating habits</td>   
+                            <td> <input type="checkbox" name="dos40" value="15"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 41 </td>
+                            <td> Vacation</td>   
+                            <td> <input type="checkbox" name="dos41" value="13"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 42 </td>
+                            <td> Christmas  financial challenges </td>   
+                            <td> <input type="checkbox" name="dos42" value="12"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 43 </td>
+                            <td> Id-el mauled financial challenges</td>   
+                            <td> <input type="checkbox" name="dos43" value="12"></td>                                    
+                        </tr>
+                        <tr>
+                            <td> 44 </td>
+                            <td> Minor violations of the law</td>   
+                            <td> <input type="checkbox" name="dos44" value="11"></td>                                    
+                        </tr>
+
+                    </tbody>
+                    
+                </table> 
+                    <button class="btn btn-outline-warning btn-lg" style="justify-self: center;"> Next </button>
+              </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

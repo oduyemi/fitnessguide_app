@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Evaluation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    <style>
+        #q1{
+            background-color: rgb(250, 249, 251);
+            color: aliceblue;
+        }
+        #row{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="row" style="background-color: blue;">
+            <div class="col-md-11 mt-5"id="q1" style="display: flex; justify-content: center;">
+              <form action="{{url_for('personality')}}" method="post"> 
+                
+                <table class="my-3 table table-striped">
+                    <h3> Personality Test</h3>
+                    <thead>
+                        <tr>
+                            <th> S/N</th>
+                            <th> Item </th>
+                            <th> Options </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 1 </td>
+                            <td> I am generally satisfied with my life</td>   
+                            <td> <input type="radio" name="q1" value="3" id="a1"><label for="a1">Never</label> &nbsp &nbsp
+                                  <input type="radio" name="q1" value="2" id="b1"> <label for="b1">Almost Never</label> &nbsp &nbsp
+                                  <input type="radio" name="q1" value="1" id="c1"><label for="c1">Frequently</label> &nbsp &nbsp
+                                  <input type="radio" name="q1" value="0" id="d1"><label for="d1">Almost Always</label>
+                            </td>                                    
+                        </tr>   
+                        <tr>
+                            <td> 2 </td>
+                            <td> I like to speak well of others</td>   
+                            <td> <input type="radio" name="q2" value="3" id="a2"><label for="a2">Never</label>  &nbsp &nbsp
+                                <input type="radio" name="q2" value="2" id="b2"><label for="b2">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q2" value="1" id="c2"><label for="c2">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q2" value="0" id="d2"><label for="d2">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 3 </td>
+                            <td>I get nervous when someone in front of me is driving slowly</td>   
+                            <td> <input type="radio" name="q3" value="0" id="a3"><label for="a3">Never</label>  &nbsp &nbsp
+                                <input type="radio" name="q3" value="1" id="b3"><label for="b3">Almost Never</label>  &nbsp &nbsp
+                                <input type="radio" name="q3" value="2" id="c3"><label for="c3">Frequently</label>  &nbsp &nbsp
+                                <input type="radio" name="q3" value="3" id="d3"><label for="d3">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 4 </td>
+                            <td> When there is a line of people waiting to be served at an establishment I leave</td>   
+                            <td> 
+                                <input type="radio" name="q4" value="0" id="a4"><label for="a4">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q4" value="1" id="b4"><label for="b4">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q4" value="2" id="c4"><label for="c4">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q4" value="3" id="d4"><label for="d4">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 5 </td>
+                            <td> I tend to be generous with myself when I set deadlines </td>   
+                            <td> 
+                                <input type="radio" name="q5" value="3" id="a5"><label for="a5">Never</label>  &nbsp &nbsp
+                                <input type="radio" name="q5" value="2" id="b5"><label for="b5">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q5" value="1" id="c5"><label for="c5">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q5" value="0" id="d5"><label for="d5">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 6 </td>
+                            <td> I have confidence in the future</td>   
+                            <td> 
+                                <input type="radio" name="q6" value="3" id="a6"><label for="a6">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q6" value="2" id="b6"><label for="b6">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q6" value="1" id="c6"><label for="c6">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q6" value="0" id="d6"><label for="d6">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 7 </td>
+                            <td> Although I don't like to, I tend to think the worst </td>   
+                            <td> 
+                                <input type="radio" name="q7" value="0" id="a7"><label for="a7">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q7" value="1" id="b7"><label for="b7">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q7" value="2" id="c7"><label for="c7">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q7" value="3" id="d7"><label for="d7">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 8 </td>
+                            <td> I like to do things in my own way and I become irritated when this is not possible </td>   
+                            <td> 
+                                <input type="radio" name="q8" value="0" id="a8"><label for="a8">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q8" value="1" id="b8"><label for="b8">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q8" value="2" id="c8"><label for="c8">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q8" value="3" id="d8"><label for="d8">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 9 </td>
+                            <td> I have a good sense of humor  </td>   
+                            <td> 
+                                <input type="radio" name="q9" value="3" id="a9"><label for="a9">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q9" value="2" id="b9"><label for="b9">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q9" value="1" id="c9"><label for="c9">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q9" value="0" id="d9"> <label for="d9">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 10 </td>
+                            <td> I like the way I am </td>   
+                            <td> 
+                                <input type="radio" name="q10" value="3" id="a10"><label for="a10">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q10" value="2" id="b10"><label for="b10">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q10" value="1" id="c10"><label for="c10">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q10" value="0" id="d10"><label for="d10">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 11 </td>
+                            <td> I get nervous if I am interrupted while I am in the middle of some activity </td>   
+                            <td> 
+                                <input type="radio" name="q11" value="0" id="a11"><label for="a11">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q11" value="1" id="b11"><label for="b11">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q11" value="2" id="c11"><label for="c11">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q11" value="3" id="d11"><label for="d11">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                         <tr>
+                            <td> 12 </td>
+                            <td> I am a perfectionist  </td>   
+                            <td> 
+                                <input type="radio" name="q12" value="0" id="a12"><label for="a12">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q12" value="1" id="b12"><label for="b12">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q12" value="2" id="c12"><label for="c12">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q12" value="3" id="d12"><label for="d12">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 13 </td>
+                            <td> I think about those who owe me money </td>   
+                            <td> 
+                                <input type="radio" name="q13" value="0" id="a13"><label for="a13">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q13" value="1" id="b13"><label for="b13">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q13" value="2" id="c13"><label for="c13">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q13" value="3" id="d13"><label for="d13">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 14 </td>
+                            <td> I get nervous when I am caught in the middle of a traffic jam </td>   
+                            <td> 
+                                <input type="radio" name="q14" value="0" id="a14"><label for="a14">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q14" value="1" id="b14"><label for="b14">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q14" value="2" id="c14"><label for="c14">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q14" value="3" id="d14"><label for="d14">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 15 </td>
+                            <td> I get bored during vacations and want to return to doing something "productive" </td>   
+                            <td> 
+                                <input type="radio" name="q15" value="0" id="a15"><label for="a15">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q15" value="1" id="b15"><label for="b15">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q15" value="2" id="c15"><label for="c15">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q15" value="3" id="d15"><label for="d15">Almost Always</label> 
+                            </td>                                    
+                        </tr>
+
+                        <tr>
+                            <td> 16 </td>
+                            <td> I'm afraid that one day I may come down with some fatal disease like cancer</td>   
+                            <td> 
+                                <input type="radio" name="q16" value="0" id="a16"><label for="a16">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q16" value="1" id="b16"><label for="b16">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q16" value="2" id="c16"><label for="c16">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q16" value="3" id="d16"><label for="d16">Almost Always</label> 
+                            </td>                                    
+                        </tr> 
+
+                        <tr>
+                            <td> 17 </td>
+                            <td> I feel  as if  I have gained new skills</td>   
+                            <td> 
+                                <input type="radio" name="q17" value="0" id="a17"><label for="a17">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q17" value="1" id="b17"><label for="b17">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q17" value="2" id="c17"><label for="c17">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q17" value="3" id="d17"><label for="d17">Almost Always</label> 
+                            </td>                                    
+                        </tr> 
+
+                        <tr>
+                            <td> 18 </td>
+                            <td> I like teaching</td>   
+                            <td> 
+                                <input type="radio" name="q18" value="0" id="a18"><label for="a18">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q18" value="1" id="b18"><label for="b18">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q18" value="2" id="c18"><label for="c18">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q18" value="3" id="d18"><label for="d18">Almost Always</label> 
+                            </td>                                    
+                        </tr> 
+
+                        <tr>
+                            <td> 19 </td>
+                            <td> I am democratic</td>   
+                            <td> 
+                                <input type="radio" name="q19" value="0" id="a19"><label for="a19">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q19" value="1" id="b19"><label for="b19">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q19" value="2" id="c19"><label for="c19">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q19" value="3" id="d19"><label for="d19">Almost Always</label> 
+                            </td>                                    
+                        </tr> 
+
+                        <tr>
+                            <td> 20 </td>
+                            <td> I understand people</td>   
+                            <td> 
+                                <input type="radio" name="q20" value="0" id="a20"><label for="a20">Never</label> &nbsp &nbsp
+                                <input type="radio" name="q20" value="1" id="b20"><label for="b20">Almost Never</label> &nbsp &nbsp
+                                <input type="radio" name="q20" value="2" id="c20"><label for="c20">Frequently</label> &nbsp &nbsp
+                                <input type="radio" name="q20" value="3" id="d20"><label for="d20">Almost Always</label> 
+                            </td>                                    
+                        </tr> 
+                        
+                    </tbody>
+                    
+                </table> 
+                    <button class="btn btn-outline-warning btn-lg" style="justify-self: center;"> Proceed to relationship Test </button>
+              </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Evaluation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+    <style>
+        #qee{
+            background-color: rgb(250, 249, 251);
+            color: aliceblue;
+        }
+        #row{
+            display: flex;
+            justify-content: center;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row" id="row">
+            <div class="col-md-11 mt-5" id="qee">
+              <form action="{{url_for('step2')}}" method="post"> 
+                
+                <table class="my-3 table table-striped">
+                    <h3> Step 2</h3>
+                    <thead>
+                        <tr>
+                            <th> S/N</th>
+                            <th> Item </th>
+                            <th> Response </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> 1 </td>
+                            <td> Are between 35 and 60 years of age </td>   
+                            <td> 
+                                <input type="radio" name="q1" value="yes" id="a1"><label for="a1">Yes</label>    &nbsp &nbsp
+                                <input type="radio" name="q1" value="no" id="c1"><label for="c1">No</label>   &nbsp &nbsp
+                            </td>                                    
+                        </tr>  
+                        <tr>
+                            <td> 2 </td>
+                            <td> Are separated or divorced </td>   
+                            <td>
+                                <input type="radio" name="q2" value="yes" id="a2"><label for="a2">Yes</label>    &nbsp &nbsp
+                                <input type="radio" name="q2" value="no" id="c2"><label for="c2">No</label>   &nbsp &nbsp
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 3 </td>
+                            <td> Live in densely populated city </td>   
+                            <td> 
+                                <input type="radio" name="q3" value="yes" id="a3"><label for="a3">Yes</label>    &nbsp &nbsp
+                                <input type="radio" name="q3" value="no" id="c3"><label for="c3">No</label>   &nbsp &nbsp
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 4 </td>
+                            <td> Have 3 or more children at home </td>   
+                            <td> 
+                                <input type="radio" name="q4" value="yes" id="a4"><label for="a4">Yes</label>    &nbsp &nbsp
+                                <input type="radio" name="q4" value="no" id="c4"><label for="c4">No</label>   &nbsp &nbsp
+                               
+                            </td>                                    
+                        </tr>
+                        <tr>
+                            <td> 5 </td>
+                            <td> Are you unemployed  </td>   
+                            <td> 
+                                <input type="radio" name="q5" value="0" id="a5"><label for="a5">Yes</label>    &nbsp &nbsp
+                                <input type="radio" name="q5" value="2" id="c5"><label for="c5">No</label>   &nbsp &nbsp
+                            </td>                                    
+                        </tr>
+                        
+                    </tbody>
+                    
+                </table> 
+                    <button class="btn btn-outline-warning btn-lg" style="justify-self: center;"> Proceed </button>
+              </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
