@@ -3,10 +3,10 @@
 var i = [0];
 var images = [];
 var time = 3000;
-images[1] = "./assets/images/hero1.jpg";
-images[2] = "./assets/images/hero2.jpg";
-images[3] = "./assets/images/hero3.jpg";
-images[4] = "./assets/images/sky.jpg";
+images[0] = "./static/assets/images/hero1.jpg";
+images[1] = "./sttic/assets/images/hero2.jpg";
+images[2] = "./static/assets/images/hero3.jpg";
+images[3] = "./static/assets/images/sky.jpg";
 
 function changeImg() {
   if (i < images.length) {

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login | Fitness Evaluation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href=" {{url_for('static',filename='assets/css/style.css')}}" type="text/css"/>
+    <link rel="stylesheet" href=" {{url_for('static',filename='assets/css/form.css')}}" type="text/css"/>
+	<link rel="stylesheet" href=" {{url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}"/>
+	<link rel="stylesheet" href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+	<style>
+		#mailing{
+			position:relative;
+			left:-30%; 
+		}
+		.tour{
+			z-index:50;
+		}
+		.tour:hover{
+			background-color:#fff !important;
+	
+		}
+        .card{
+            position:absolute;
+            right:40%;
+            top:30%;
+        }
+
+        .formlink{
+            position:relative;
+            right:50%;
+        }
+	</style>
+	
+</head>
+
+<body>
+	<div>
+       <nav>
+			<div id="logo">
+				<a href="/"><img src="{{url_for('static',filename='assets/images/logo-wide.png')}}" alt="Site logo"/></a>
+			</div>
+			<div id="menu">
+				<ul>
+					<li><a href="#about">About</a></li>&emsp;&nbsp;&emsp;
+                    <li><a href="#contact">Contact</a></li>&emsp;&nbsp;&emsp;&emsp;
+                    <li><a href="#evaluation">Evaluation</a></li>&emsp; &emsp;
+					<li><a href="{{ url_for("login") }}" class="mainbtn">Login</a></li>&emsp;
+					<li><a href="{{ url_for("signup") }}}" class="mainbtn_outline">Sign up</a></li>
+				</ul>
+			</div>
+			<div id="nav_cta" class="my-3">
+			<button>TALK TO AN EXPERT</button>
+			</div>
+	   </nav>
+    </div>
+
+<div class="container-fluid mt-5 mx-auto">
+    <form method="post" action="">
+    <div class="card">
+        <input type="checkbox" id="chk" aria-hidden="true" name="">
+            <div class="content">
+                <div class="front">
+                    <div class="inner">
+<legend class="text-center border-bottom mb-4">Log in</legend>
+{{ form.csrf_token }} 
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+      {{ message }}
+  {% endfor %}
+{% endif %}
+
+{% endwith %}
+
+<div class="txt_field form-group">
+{% if form.email.errors %}
+    {{ form.email (class="is_invalid") }}
+    <div class="invalid-feedback">
+        {% for error in form.email.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+    {{ form.email }}
+{% endif %}
+</div>
+
+<div class="txt_field form-group">
+{% if form.password.errors %}
+    {{ form.password (class="is_invalid") }}
+    <div class="invalid-feedback">
+        {% for error in form.password.errors %}
+        <span>{{ error }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+    {{ form.password }}
+{% endif %}
+</div>
+
+<label for="chk" aria-hidden="true">Forget Password?</label>
+{{ form.submit (class="mainbtn") }}
+
+<div class="formlink">
+    <span class="ms-5">Not Registered? <a href="{{url_for("signup")}}">Sign up here</a></span>
+</div></div></div></div>
+
+</form>
+
+</div>
+
+<script src="{{url_for('static', filename='assets/bootstrap/js/bootstrap.min.js')}} "></script>
+<script type="text/javascript" language="javascript" src="{{url_for('static', filename='assets/js/script.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/jquery-3.6.1.min.js')}} "></script>
+        
+</body>
+        
+</html>

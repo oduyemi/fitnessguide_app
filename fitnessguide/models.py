@@ -74,8 +74,8 @@ class Step3(db.Model):
 class Sed_Lifestyle(db.Model):
     q_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
     item = db.Column(db.String(255),nullable=False)
-    No_hrs = db.Column(db.Integer,nullable=False)
-    converted_value = db.Column(db.Integer, nullable=True)
+    no_hrs = db.Column(db.String(20),nullable=False)
+    converted_value = db.Column(db.Float, nullable=True)
 
 class Social(db.Model):
     q_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
@@ -95,8 +95,22 @@ class Categories(db.Model):
 
 class Readjustment(db.Model):
     srs_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
-    srs_name = db.Column(db.String(1000),nullable=False)
-    srs_score = db.Column(db.Integer,nullable=True)
+    srs_name = db.Column(db.String(255),nullable=False)
+    srs_score = db.Column(db.Float,nullable=True)
 
 
 
+class Results(db.Model):
+    res_id = db.Column(db.Integer, autoincrement=True,primary_key=True)
+    employment = db.Column(db.Integer,nullable=True)
+    environment = db.Column(db.Integer,nullable=True)
+    lifestyle = db.Column(db.Integer,nullable=True)
+    personality = db.Column(db.Integer,nullable=True)
+    relationship = db.Column(db.Integer,nullable=True)
+    symptoms = db.Column(db.Integer,nullable=True)
+    social = db.Column(db.Integer,nullable=True)
+    sed_life_hrs = db.Column(db.Float,nullable=True)
+    sed_life_conval = db.Column(db.Float,nullable=True)
+    date = db.Column(db.DateTime(),default=datetime.utcnow)
+    user_id = db.Column(db.Integer,nullable=True)
+    

@@ -98,7 +98,7 @@ AUTHOR: Opeyemi Oduyemi
 }
 	
 	#nav_cta button:hover{
-	background-color:#32CD33;
+	background-color:#002147;
 	transition:0.15em;
 }
 	
@@ -261,8 +261,8 @@ AUTHOR: Opeyemi Oduyemi
 		left:14%;
 	}
 	.test_btn:hover{
-		background-color:#35CA34;
-		 color:#0A122A;
+		background-color:#002147;
+		 color:#ffffff;
 		transition:0.15s;
 	}
 	
@@ -425,6 +425,33 @@ AUTHOR: Opeyemi Oduyemi
 		width:25%;
 		
 	}
+
+	.mainbtn{
+		background-color: #32CD33;
+		color: #ffffff;
+		cursor: pointer;
+		padding: 7px;
+		border: 2px solid #32CD33;
+	}
+
+	.mainbtn:hover{
+		background-color:#002147;
+		color:#ffffff;
+		transition:0.15em;
+	}
+
+	.mainbtn_outline{
+		color: #32CD33;
+		background-color: #ffffff;
+		cursor: pointer;
+		padding: 6.4px;
+		border: 2px solid #32CD33;
+	}
+
+	.mainbtn_outline:hover{
+		background-color:#002147;
+		transition:0.15em;
+	}
 	
 	.info_cta button{
 		background-color: #fff;
@@ -447,7 +474,7 @@ AUTHOR: Opeyemi Oduyemi
 	}
 	
 	.info_cta button:hover{
-		color:#32CD33;
+		color:#002147;
 		transition:0.15em;
 	}
 	
@@ -520,18 +547,25 @@ AUTHOR: Opeyemi Oduyemi
 	flex-direction:row;
 	flex-wrap:wrap;
 	justify-content:stretch;
+	position: relative;
+	left: 14%;
 	
 	
 }
 
 .chart1, .chart2, .chart3{
-	width:22%;
-	min-height:200px;
+	width:80%;
+	min-height:240px;
+	background-color: #ccc;
+	border-radius: 10px;
 }
 .chart4{
-	width:99%;
+	width:80%;
 	min-height:500px;
 	background-color:#f6f8f9;
+	border: 3px solid #32CD33;
+	border-radius: 14px;
+	margin-top: -1%;
 }
 
 .inner_flexbox{
@@ -541,6 +575,16 @@ AUTHOR: Opeyemi Oduyemi
 	flex-direction:row;
 	justify-content:space-between;
 	margin:auto;
+}
+
+#contact{
+	position: relative;
+	left: 5%;
+}
+
+#contact h1{
+	position: inherit;
+	left:35%;
 }
 
 .inner1{

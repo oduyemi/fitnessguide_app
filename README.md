@@ -1,1 +1,1 @@
-A fitness evaluation app for Fitness Guide International. This project is executed by a team of two members; Opeyemi Oduyemi and Emeka Ijegalu of Lambdah Softwares. Learn more about Fitness Guide International at www.fitnessguideint.com
+A fitness Evaluation web application for Fitness Guide International

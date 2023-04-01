@@ -2,10 +2,10 @@ let i=[0];
 let images=[]
 let time=3000;
 
-images[0]="./assets/images/hero1.jpg"
-images[1]="./assets/images/hero2.jpg"
-images[2]="./assets/images/hero3.jpg"
-images[3]="./assets/images/sky.jpg"
+images[0]="./static/assets/images/hero1.jpg"
+images[1]="./sttic/assets/images/hero2.jpg"
+images[2]="./static/assets/images/hero3.jpg"
+images[3]="./static/assets/images/sky.jpg"
 
 function changeImg(){
     if(i<images.length){

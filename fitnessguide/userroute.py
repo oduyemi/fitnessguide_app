@@ -1,8 +1,9 @@
 import os,random
-
 from flask import render_template, redirect, flash, session, request, url_for
-from fitnessguide.models import Options, Employment,Environment,Lifestyle,Personality,Relationship,Symptoms,Categories,Readjustment
+from fitnessguide.models import Users, Options, Employment,Environment,Lifestyle,Personality,Relationship,Symptoms,Categories,Readjustment,Sed_Lifestyle,Results
 from fitnessguide import app, db
+from fitnessguide.forms import LoginForm, SignUpForm, ContactForm
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.sql import text
 
 
@@ -10,7 +11,78 @@ from sqlalchemy.sql import text
 
 @app.route('/')
 def home():
-    return render_template('users/demo.html')
+    form=ContactForm()
+    if request.method == "GET":
+        return render_template('users/index.html',form = form)
+    else:
+        name=request.form.get("username")
+        mail=request.form.get("email")
+        subject=request.form.get("subject")
+        message=request.form.get("msg")
+        if name !='' and mail != "" and subject !='' and message !='':
+            new_msg = Contact(contact_name=name, contact_email=mail, contact_subject=subject, contact_content=message, contact_status_id=1)
+            db.session.add(new_msg)
+            db.session.commit()
+            flash("Thank you for reaching out, I will get back to you shortly", "success")
+            return render_template('user/index.html', form = form)
+        else:
+            flash('You must fill the form correctly to signup', "danger")
+
+
+
+@app.route('/signup', methods = ["GET", "POST"], strict_slashes = False)
+def signup():
+    form = SignUpForm()
+    if request.method == "GET":
+        return render_template('users/signup.html', title="Sign Up", form = form)
+    else:
+        fname = form.fname.data
+        lname = form.lname.data
+        email = form.email.data
+        password=form.password.data
+        hashedpwd = generate_password_hash(password)
+    if fname !='' and lname != "" and email !='' and password !='':
+        new_user= Users(user_fname = fname, user_lname = lname, user_email = email,
+        user_password = hashedpwd)
+        db.session.add(new_user)
+        db.session.commit()
+        userid = new_user.user_id
+        session['loggedin']=userid
+        flash(f"Account created for {form.fname.data}! Please proceed to LOGIN ", "success")
+        return redirect(url_for('login'))
+    else:
+        flash('You must fill the form correctly to signup', "danger")
+        return redirect(url_for('signup'))
+
+
+@app.route('/login', methods = (["GET", "POST"]), strict_slashes = False)
+def login():
+    form = LoginForm()
+    if request.method=='GET':
+        return render_template('users/login.html', title="Login", form=form)
+    else:
+        if form.validate_on_submit:
+            email = form.email.data
+            password = form.password.data
+            if email !="" and password !="":
+                user = db.session.query(Users).filter(Users.user_email==email).first() 
+                if user !=None:
+                    pwd =user.user_password
+                    chk = check_password_hash(pwd, password)
+                    if chk:
+                        userid = user.b_user_id
+                        session['loggedin'] = userid
+                        return redirect(url_for('home'))
+                    else:
+                        flash('Invalid email or password', "danger")
+                        return redirect(url_for('login'))
+                else:
+                    flash("Ensure that your login details are correct, or signup to create an account", "danger")  
+                    return redirect(url_for('login'))     
+        else:
+            flash("You must complete all fields", "danger")
+            return redirect(url_for("signup"))
+
 
 
 
@@ -499,11 +571,11 @@ def step3():
 
 @app.route('/sed_lifestyle', methods=['GET','POST'])
 def sed_lifestyle():
-    deets = db.session.query(Symptoms).all()
-    mdeets = db.session.query(Symptoms).order_by(Symptoms.q_id).all()
-    id = db.session.query(Symptoms).order_by(Symptoms.q_id).first()
+    #deets = db.session.query(Sed_Lifestyle).all()
+    # mdeets = db.session.query(Sed_Lifestyle).order_by(Sed_Lifestyle.q_id).all()
+    # id = db.session.query(Sed_Lifestyle).order_by(Sed_Lifestyle.q_id).first()
     if request.method=='GET':
-        return render_template('users/sedentary_lifestyle.html', deets=deets,mdeets=mdeets)
+        return render_template('users/sedentary_lifestyle.html')
     else:
         slt1 = request.form.get('sl1')
         slt2 = request.form.get('sl2')
@@ -523,54 +595,53 @@ def sed_lifestyle():
         slt16 = request.form.get('sl16')
         slt17 = request.form.get('sl17')
 
-        #sltsum = int(slt1 + slt2 + slt3 + slt4 + slt5 + slt6 + slt7 + slt8 + slt9 + slt10 + slt11 + slt12 + slt13 + slt14 + slt15 +slt16 + slt17)
 
-        # if sltsum >24:
-        #     flash('please, your total hours spent in a day should not be more than 24hrs')
+        sql1 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt1}' WHERE q_id = 1"
+        sql2 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt2}' WHERE q_id = 2"
+        sql3 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt3}' WHERE q_id = 3"
+        sql4 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt4}' WHERE q_id = 4"
+        sql5 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt5}' WHERE q_id = 5"
+        sql6 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt6}' WHERE q_id = 6"
+        sql7 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt7}' WHERE q_id = 7"
+        sql8 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt8}' WHERE q_id = 8"
+        sql9 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt9}' WHERE q_id = 9"
+        sql10 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt10}' WHERE q_id =10"
+        sql11 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt11}' WHERE q_id = 11"
+        sql12 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt12}' WHERE q_id = 12"
+        sql13 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt13}' WHERE q_id = 13"
+        sql14 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt14}' WHERE q_id = 14"
+        sql15 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt15}' WHERE q_id = 15"
+        sql16 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt16}' WHERE q_id = 16"
+        sql17 = f"UPDATE Sed_Lifestyle SET no_hrs = '{slt17}' WHERE q_id = 17"
+
+        sq1 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt1}'*0.8 WHERE q_id = 1"
+        sq2 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt2}'*0.8 WHERE q_id = 2"
+        sq3 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt3}'*1.5 WHERE q_id = 3"
+        sq4 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt4}'*1.5 WHERE q_id = 4"
+        sq5 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt5}'*1.5 WHERE q_id = 5"
+        sq6 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt6}'*1.5 WHERE q_id = 6"
+        sq7 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt7}'*1.5 WHERE q_id = 7"
+        sq8 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt8}'*2 WHERE q_id = 8"
+        sq9 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt9}'*3 WHERE q_id = 9"
+        sq10 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt10}'*4 WHERE q_id =10"
+        sq11 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt11}'*5 WHERE q_id = 11"
+        sq12 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt12}'*3 WHERE q_id = 12"
+        sq13 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt13}'*4 WHERE q_id = 13"
+        sq14 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt14}'*5 WHERE q_id = 14"
+        sq15 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt15}'*7 WHERE q_id = 15"
+        sq16 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt16}'*8 WHERE q_id = 16"
+        sq17 = f"UPDATE Sed_Lifestyle SET converted_value = '{slt17}'*9 WHERE q_id = 17"
+
+
+        # total = "SELECT SUM(no_hrs) FROM sed_lifestyle"
+        # all = float(total)
+
+        # # if all > 24:
+        #     flash('You cannot have more than 24 hours in a day, please make sure that your total activities in a day does not exceed 24 hours')
         #     return redirect(url_for('sed_lifestyle'))
         # else:
-
-        s1 = parseFloat(slt1 * 0.8)
-        s2 = slt2 * 0.8
-        s3 = slt3 * 0.8
-        s4 = slt4 * 1.5
-        s5 = slt5 * 1.5
-        s6 = slt6 * 1.5
-        s7 = slt7 * 1.5
-        s8 = slt8 * 2
-        s9 = slt9 * 3
-        s10 = slt10 * 4
-        s11 = slt11 * 5
-        s12 = slt12 * 3
-        s13 = slt13 * 4
-        s14 = slt14 * 5
-        s15 = slt15 * 7
-        s16 = slt16 * 8
-        s17 = slt17 * 9
-
-
-        sql1 = f"UPDATE Symptoms SET qstn_value = '{s1}' WHERE q_id = 1"
-        sql2 = f"UPDATE Symptoms SET qstn_value = '{s2}' WHERE q_id = 2"
-        sql3 = f"UPDATE Symptoms SET qstn_value = '{s3}' WHERE q_id = 3"
-        sql4 = f"UPDATE Symptoms SET qstn_value = '{s4}' WHERE q_id = 4"
-        sql5 = f"UPDATE Symptoms SET qstn_value = '{s5}' WHERE q_id = 5"
-        sql6 = f"UPDATE Symptoms SET qstn_value = '{s6}' WHERE q_id = 6"
-        sql7 = f"UPDATE Symptoms SET qstn_value = '{s7}' WHERE q_id = 7"
-        sql8 = f"UPDATE Symptoms SET qstn_value = '{s8}' WHERE q_id = 8"
-        sql9 = f"UPDATE Symptoms SET qstn_value = '{s9}' WHERE q_id = 9"
-        sql10 = f"UPDATE Symptoms SET qstn_value = '{s10}' WHERE q_id =10"
-        sql11 = f"UPDATE Symptoms SET qstn_value = '{s11}' WHERE q_id = 11"
-        sql12 = f"UPDATE Symptoms SET qstn_value = '{s12}' WHERE q_id = 12"
-        sql13 = f"UPDATE Symptoms SET qstn_value = '{s13}' WHERE q_id = 13"
-        sql14 = f"UPDATE Symptoms SET qstn_value = '{s14}' WHERE q_id = 14"
-        sql15 = f"UPDATE Symptoms SET qstn_value = '{s15}' WHERE q_id = 15"
-        sql16 = f"UPDATE Symptoms SET qstn_value = '{s16}' WHERE q_id = 16"
-
-
-        total = "SELECT SUM(qstn_value) FROM symptoms"
-        catv = "UPDATE Categories SET cat_point = (SELECT SUM(qstn_value) FROM symptoms) WHERE cat_name = 'symptoms'"
-        sumdeets = "UPDATE Categories SET total_score = (SELECT SUM(cat_point) FROM Categories) WHERE cat_name = 'total'"
-
+        catv = "UPDATE Readjustment SET srs_score = (SELECT SUM(converted_value) FROM sed_lifestyle) WHERE srs_name = 'sedentary lifestyle'"
+            
         db.session.execute(text(sql1))
         db.session.execute(text(sql2))
         db.session.execute(text(sql3))
@@ -587,10 +658,37 @@ def sed_lifestyle():
         db.session.execute(text(sql14))
         db.session.execute(text(sql15))
         db.session.execute(text(sql16))
-        db.session.execute(text(catv))
-        db.session.execute(text(sumdeets))
+        db.session.execute(text(sql17))
+        all = db.session.execute(text(catv))
+        db.session.execute(text(sq1))
+        db.session.execute(text(sq2))
+        db.session.execute(text(sq3))
+        db.session.execute(text(sq4))
+        db.session.execute(text(sq5))
+        db.session.execute(text(sq6))
+        db.session.execute(text(sq7))
+        db.session.execute(text(sq8))
+        db.session.execute(text(sq9))
+        db.session.execute(text(sq10))
+        db.session.execute(text(sq11))
+        db.session.execute(text(sq12))
+        db.session.execute(text(sq13))
+        db.session.execute(text(sq14))
+        db.session.execute(text(sq15))
+        db.session.execute(text(sq16))
+        db.session.execute(text(sq17))
         db.session.commit()
+
+        # read2 = db.session.query(Readjustment).filter(Readjustment.srs_name=='sedentary lifestyle').first()
+        # read = "SELECT srs_score FROM Readjustment WHERE srs_name = 'sedentary lifestyle' "
+        # if   read2 == 24:
+        #     return redirect(url_for('home'))
+            
+        # else:
+        #     #flash('You cannot have more or less than 24 hours in a day, please make sure that your total activities in a day does not exceed 24 hours')
+        #     return redirect(url_for('sed_lifestyle'))
         return redirect(url_for('home'))
+
 
 @app.route('/social', methods=['GET','POST'])
 def social():
